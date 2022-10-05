@@ -1,0 +1,8 @@
+habilitations:
+  - username: kevin
+    name: Kevin Barnoin
+    gpg_key: 7F5A88DA2A9EEEF2
+    authorized_keys:
+      - "https://github.com/kevbarns.keys"
+
+gpg_keys: "{{ habilitations  | map(attribute='gpg_key', default='') | select() | join(',')}}"
