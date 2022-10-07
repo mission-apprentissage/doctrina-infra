@@ -4,5 +4,10 @@ habilitations:
     gpg_key: 7F5A88DA2A9EEEF2
     authorized_keys:
       - "https://github.com/kevbarns.keys"
+  - username: aleruyet
+    name: Alan Le Ruyet
+    gpg_key: 833E575C3E280F50
+    authorized_keys:
+      - "https://github.com/alanlr.keys"
 
 gpg_keys: "{{ habilitations  | map(attribute='gpg_key', default='') | select() | join(',')}}"
