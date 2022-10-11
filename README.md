@@ -32,7 +32,10 @@ suivant : https://docs.github.com/en/authentication/connecting-to-github-with-ss
 
 Votre clef publique doit impérativement être disponible à l'adresse https://github.com/<votre_user_github>.keys pour que votre user soit configuré correctement.
 Pour forcer l'utilisation de la bonne clef privée lors de vos connexions SSH vous pouvez utiliser la commande -i en pointant vers le fichier contenant la clef. 
-Ex :  ssh -i /home/nom_user/.ssh/id_rsa <votre_user_lba>@labonnealternance.apprentissage.beta.gouv.fr
+
+```bash
+ ssh -i /home/nom_user/.ssh/id_rsa <votre_user_lba>@labonnealternance.apprentissage.beta.gouv.fr
+```
 
 ### GPG
 
