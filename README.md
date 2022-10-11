@@ -1,24 +1,24 @@
 # Infrastructure
 
-* [Prérequis](#prérequis)
-  * [SSH](#ssh)
-  * [GPG](#gpg)
-* [Configuration et déploiement d'un environnement](#configuration-et-déploiement-dun-environnement)
-* [Vault](#vault)
-  * [Création du vault](#création-du-vault)
-  * [Edition du vault](#edition-du-vault)
-  * [Variables du vault](#variables-du-vault)
-* [Habilitations](#habilitations)
-  * [Ajout d'un utilisateur](#ajout-dun-utilisateur)
-  * [Suppression d'un utilisateur](#suppression-dun-utilisateur)
-* [Création d'un nouvel environnement](#création-dun-nouvel-environnement)
-  * [Déclaration de l'environnement](#déclaration-de-lenvironnement)
-  * [Configuration du firewall](#configuration-du-firewall)
-  * [Configuration de l'environnement](#configuration-de-lenvironnement)
-* [Modification d'un environnement](#modification-dun-environnement)
-  * [Ajouter un disque de sauvegarde externe](#ajouter-un-disque-de-sauvegarde-externe)
-  * [Notifications Slack](#notifications-slack)
-* [Tester les playbook Ansible](#tester-les-playbook-ansible)
+- [Prérequis](#prérequis)
+  - [SSH](#ssh)
+  - [GPG](#gpg)
+- [Configuration et déploiement d'un environnement](#configuration-et-déploiement-dun-environnement)
+- [Vault](#vault)
+  - [Création du vault](#création-du-vault)
+  - [Edition du vault](#edition-du-vault)
+  - [Variables du vault](#variables-du-vault)
+- [Habilitations](#habilitations)
+  - [Ajout d'un utilisateur](#ajout-dun-utilisateur)
+  - [Suppression d'un utilisateur](#suppression-dun-utilisateur)
+- [Création d'un nouvel environnement](#création-dun-nouvel-environnement)
+  - [Déclaration de l'environnement](#déclaration-de-lenvironnement)
+  - [Configuration du firewall](#configuration-du-firewall)
+  - [Configuration de l'environnement](#configuration-de-lenvironnement)
+- [Modification d'un environnement](#modification-dun-environnement)
+  - [Ajouter un disque de sauvegarde externe](#ajouter-un-disque-de-sauvegarde-externe)
+  - [Notifications Slack](#notifications-slack)
+- [Tester les playbook Ansible](#tester-les-playbook-ansible)
 
 ## Prérequis
 
@@ -44,6 +44,12 @@ de la mission apprentissage, vous devez publier votre clé :
 
 ```bash
 gpg --send-key <identifiant>
+```
+
+Vérifier que clé est bien été publié avec la commande suivante:
+
+```bash
+gpg --recv-keys <gpg_key>
 ```
 
 Il est vivement conseillé de réaliser un backup des clés publique et privée qui viennent d'être créés.
@@ -137,7 +143,6 @@ Toutes les variables du vault sont préfixées par `vault`
 vault:
   APP_VERSION: "1.0.0"
   APP_ENV: "recette"
-...
 ```
 
 Pour y faire référence dans un fichier il suffit d'utiliser la syntaxe `{{ vault.APP_VERSION }}`
@@ -169,10 +174,10 @@ environnements si une clé GPG est fournie.
 Une habilitation doit être de la forme suivante :
 
 ```yml
-  - username: <nom de l'utilisateur sur l'environnement>
-    name: <nom de la personne>
-    gpg_key: <identifiant de la clé GPG> (optionnel)
-    authorized_keys: <Liste des clés SSH> (il est possible de mettre une url github)
+- username: <nom de l'utilisateur sur l'environnement>
+  name: <nom de la personne>
+  gpg_key: <identifiant de la clé GPG> (optionnel)
+  authorized_keys: <Liste des clés SSH> (il est possible de mettre une url github)
 ```
 
 Une fois le fichier des habilitations mis à jour, vous devez renouveler le vault et relancer la configuration de
@@ -187,8 +192,8 @@ l'environnement.
 
 Pour supprimer une personne des habilitations, il faut :
 
-* enlever les informations renseignées à son sujet dans le fichier `ansible/roles/setup/vars/main/habilitations.yml`
-* ajouter le username de la personne dans le fichier `ansible/roles/clean/tasks/main.yml`
+- enlever les informations renseignées à son sujet dans le fichier `ansible/roles/setup/vars/main/habilitations.yml`
+- ajouter le username de la personne dans le fichier `ansible/roles/clean/tasks/main.yml`
 
 Une fois ces fichiers mis à jour, vous devez renouveler le vault et lancer la commande de nettoyage :
 
@@ -247,7 +252,7 @@ afin de vérifier que le firewall a été activé pour l'ip du VPS.
 Pour configurer l'environnement, il faut lancer la commande suivante :
 
 ```
-ssh-keyscan <ip> >> ~/.ssh/known_hosts 
+ssh-keyscan <ip> >> ~/.ssh/known_hosts
 bash scripts/setup-vm.sh <nom_environnement> --user ubuntu --ask-pass
 ```
 
