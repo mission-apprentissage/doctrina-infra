@@ -30,6 +30,10 @@ l'application. Ce projet utilise Ansible 2.7+ pour configurer et déployer l'app
 Pour utiliser le projet infra, vous devez avoir une clé SSH, si ce n'est pas le cas, vous pouvez suivre le tutorial
 suivant : https://docs.github.com/en/authentication/connecting-to-github-with-ssh
 
+Votre clef publique doit impérativement être disponible à l'adresse https://github.com/<votre_user_github>.keys pour que votre user soit configuré correctement.
+Pour forcer l'utilisation de la bonne clef privée lors de vos connexions SSH vous pouvez utiliser la commande -i en pointant vers le fichier contenant la clef. 
+Ex :  ssh -i /home/nom_user/.ssh/id_rsa <votre_user_lba>@labonnealternance.apprentissage.beta.gouv.fr
+
 ### GPG
 
 Pour utiliser le projet infra, vous devez avoir une clé GPG, si ce n'est pas le cas, vous pouvez en créer une via la
