@@ -6,7 +6,7 @@ habilitations:
       - "https://github.com/kevbarns.keys"
   - username: aleruyet
     name: Alan Le Ruyet
-    gpg_key: 833E575C3E280F50
+    gpg_key: 2AEF45D8C40959EE
     authorized_keys:
       - "https://github.com/alanlr.keys"
 
