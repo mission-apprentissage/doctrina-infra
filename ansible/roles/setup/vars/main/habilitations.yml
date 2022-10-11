@@ -9,5 +9,10 @@ habilitations:
     gpg_key: 2AEF45D8C40959EE
     authorized_keys:
       - "https://github.com/alanlr.keys"
+  - username: rimiti
+    name: Dimitri DO BAIRRO
+    gpg_key: 534AA92BDE7EB5A1
+    authorized_keys:
+      - "https://github.com/rimiti.keys"
 
 gpg_keys: "{{ habilitations  | map(attribute='gpg_key', default='') | select() | join(',')}}"
