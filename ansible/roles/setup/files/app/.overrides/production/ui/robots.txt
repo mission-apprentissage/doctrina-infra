@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /recherche-apprentissage
+Disallow: /recherche-apprentissage-formation
+Disallow: /recherche-emploi
+Disallow: /test-widget
