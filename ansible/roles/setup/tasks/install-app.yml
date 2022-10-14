@@ -41,6 +41,13 @@
     - "/opt/doctrina/backups"
     - "/opt/doctrina/.overrides"
 
+- name: Ensure elasticsearch container can write in its directory
+  file:
+    path: /opt/labonnealternance/data/elasticsearch
+    owner: 1000
+    group: 1000
+    state: directory
+
 - name: Add cron to rotate nginx files
   ansible.builtin.cron:
     name: "rotate_nginx_log_files"
