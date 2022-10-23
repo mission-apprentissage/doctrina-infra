@@ -17,8 +17,7 @@ services:
     environment:
       - AWS_ACCESS_KEY_ID={{ vault.AWS_ACCESS_KEY_ID }}
       - AWS_SECRET_ACCESS_KEY={{ vault.AWS_SECRET_ACCESS_KEY }}
-      - LABONNEALTERNANCE_MONGODB_URI="mongodb://127.0.0.1:27017/labonnealternance?retryWrites=true&w=majority"
-      - LABONNEALTERNANCE_SECRET_UPDATE_ROMES_METIERS={{ vault.LABONNEALTERNANCE_SECRET_UPDATE_ROMES_METIERS }}
+      - LABONNEALTERNANCE_MONGODB_URI="mongodb://mongodb:27017/labonnealternance?retryWrites=true&w=majority"
     volumes:
       - /opt/doctrina/data/server:/data
 
