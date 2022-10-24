@@ -187,7 +187,7 @@ Une habilitation doit être de la forme suivante :
   authorized_keys: <Liste des clés SSH> (il est possible de mettre une url github)
 ```
 
-Une fois le fichier des habilitations mis à jour, vous devez renouveler le vault et relancer la configuration de
+Une fois le fichier des habilitations mis à jour, vous devez faire renouveler le vault par un utilisateur déjà habilité et relancer la configuration de
 l'environnement.
 
 ```bash
