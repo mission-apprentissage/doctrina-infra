@@ -4,6 +4,11 @@ habilitations:
     gpg_key: 7F5A88DA2A9EEEF2
     authorized_keys:
       - "https://github.com/kevbarns.keys"
+  - username: bdavidxyz
+    name: David Boureau
+    gpg_key: 3B1EDD513DB5DED6
+    authorized_keys:
+      - "https://github.com/bdavidxyz.keys"
   - username: aleruyet
     name: Alan Le Ruyet
     gpg_key: 2AEF45D8C40959EE
