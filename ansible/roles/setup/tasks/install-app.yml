@@ -48,6 +48,13 @@
     group: 1000
     state: directory
 
+- name: Ensure clamav container can write in its directory
+  file:
+    path: /opt/labonnealternance/data/clamav
+    owner: 100
+    group: 101
+    state: directory
+
 - name: Add cron to rotate nginx files
   ansible.builtin.cron:
     name: "rotate_nginx_log_files"
