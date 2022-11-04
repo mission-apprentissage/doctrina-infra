@@ -12,12 +12,11 @@ services:
       - PROXY_SSL_CERT=/ssl/fullchain.pem
       - PROXY_SSL_CERT_KEY=/ssl/privkey.pem
 
-
   server:
     environment:
       - AWS_ACCESS_KEY_ID={{ vault.AWS_ACCESS_KEY_ID }}
       - AWS_SECRET_ACCESS_KEY={{ vault.AWS_SECRET_ACCESS_KEY }}
-      - LABONNEALTERNANCE_MONGODB_URI=mongodb://mongodb:27017/labonnealternance?retryWrites=true&w=majority      
+      - LABONNEALTERNANCE_MONGODB_URI=mongodb://mongodb:27017/labonnealternance?retryWrites=true&w=majority
       - LABONNEALTERNANCE_SECRET_UPDATE_ROMES_METIERS={{ vault.LABONNEALTERNANCE_SECRET_UPDATE_ROMES_METIERS }}
       - LABONNEFORMATION_PASSWORD={{ vault.LABONNEFORMATION_PASSWORD }}
       - LABONNEALTERNANCE_SMTP_AUTH_USER={{ vault.LABONNEALTERNANCE_SMTP_AUTH_USER }}
@@ -59,3 +58,18 @@ services:
   elasticsearch:
     volumes:
       - /opt/doctrina/data/elasticsearch:/usr/share/elasticsearch/data
+
+  metabase:
+    image: metabase/metabase:v0.44.6
+    container_name: doctrina_metabase
+    mem_limit: 3g
+    volumes:
+      - /opt/doctrina/data/metabase:/data/metabase
+    depends_on:
+      - mongodb
+    environment:
+      MB_DB_FILE: /data/metabase/metabase.db
+      MB_SITE_LOCALE: fr
+    restart: always
+    networks:
+      - doctrina_network
