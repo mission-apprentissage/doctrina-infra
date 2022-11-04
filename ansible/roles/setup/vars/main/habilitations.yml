@@ -6,7 +6,6 @@ habilitations:
       - "https://github.com/kevbarns.keys"
   - username: bdavidxyz
     name: David Boureau
-    gpg_key: 3B1EDD513DB5DED6
     authorized_keys:
       - "https://github.com/bdavidxyz.keys"
   - username: aleruyet
