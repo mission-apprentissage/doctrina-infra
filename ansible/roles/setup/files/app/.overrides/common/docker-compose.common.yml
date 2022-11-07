@@ -56,9 +56,9 @@ services:
     environment:
       - SENTRY_ORG=mna-idea
       - SENTRY_PROJECT=labonnealternance-ui
-      - SENTRY_AUTH_TOKEN={{ vault.SENTRY_AUTH_TOKEN }}
-      - SERVER_SENTRY_DSN={{ vault.SERVER_SENTRY_DSN }}
-      - UI_SENTRY_DSN={{ vault.UI_SENTRY_DSN }}
+      - LBA_SENTRY_AUTH_TOKEN={{ vault.LBA_SENTRY_AUTH_TOKEN }}
+      - LBA_SERVER_SENTRY_DSN={{ vault.LBA_SERVER_SENTRY_DSN }}
+      - LBA_UI_SENTRY_DSN={{ vault.LBA_UI_SENTRY_DSN }}
 
   mongodb:
     volumes:
