@@ -2,7 +2,7 @@
 set -euo pipefail
 
 readonly TEXT_MESSAGE=${1:?"Please provide a text message"}
-readonly SLACK_URL="{{ vault.DOCTRINA_SLACK_WEBHOOK_URL }}"
+readonly SLACK_URL="{{ vault.LBA_SLACK_WEBHOOK_URL }}"
 readonly CHANNEL_NAME="#doctrina-alerting"
 readonly MNA_ENV=$(cat /env)
 

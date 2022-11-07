@@ -6,7 +6,7 @@
 - name: "Création utilisateur {{ habilitation.username }}"
   user:
     name: "{{ habilitation.username }}"
-    password: "{{ vault.DOCTRINA_HABILITATION_PASSWORD }}"
+    password: "{{ vault.LBA_HABILITATION_PASSWORD }}"
     update_password: on_create
     shell: /bin/bash
     groups: sudo,mna
@@ -21,8 +21,7 @@
   authorized_key:
     user: "{{ habilitation.username }}"
     state: present
-    key: '{{key}}'
+    key: "{{key}}"
   loop: "{{ habilitation.authorized_keys }}"
   loop_control:
     loop_var: key
-
