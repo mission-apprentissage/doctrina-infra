@@ -1,0 +1,49 @@
+- name: Add metabase db backup. Creates an entry "30 0 * * bash /opt/matcha/tools/backup-metabase.sh >> /var/log/backup-metabase.log"
+  when: env_type == "production"
+  become: true
+  cron:
+    name: "backup metabase"
+    minute: "20"
+    hour: "0"
+    job: "bash /opt/matcha/tools/clean-backup.sh && bash /opt/matcha/tools/backup-metabase.sh >> /var/log/backup-metabase.log"
+
+- name: Add cron to create offre collection for metabase
+  when: env_type == "production"
+  ansible.builtin.cron:
+    name: "offre-metabase"
+    minute: "30"
+    hour: "5"
+    job: "bash /opt/matcha/tools/cli.sh creer-offre-metabase >> /var/log/cron.log 2>&1"
+
+- name: Add cron to cancel forms
+  when: env_type == "production"
+  ansible.builtin.cron:
+    name: "annulation-formulaire"
+    minute: "0"
+    hour: "6"
+    job: "bash /opt/matcha/tools/cli.sh annulation-formulaire >> /var/log/cron.log 2>&1"
+
+- name: Add cron to send forms email reminder
+  when: env_type == "production"
+  ansible.builtin.cron:
+    name: "relance-formulaire j7"
+    minute: "30"
+    hour: "6"
+    job: "bash /opt/matcha/tools/cli.sh relance-formulaire 7 >> /var/log/cron.log 2>&1"
+
+- name: Add cron to send forms email reminder
+  when: env_type == "production"
+  ansible.builtin.cron:
+    name: "relance-formulaire j1"
+    minute: "0"
+    hour: "7"
+    job: "bash /opt/matcha/tools/cli.sh relance-formulaire 1 >> /var/log/cron.log 2>&1"
+
+- name: Send reminder to OPCO about awaiting validation users
+  when: env_type == "production"
+  ansible.builtin.cron:
+    name: "relance-opco"
+    weekday: "1-3-5"
+    minute: "30"
+    hour: "7"
+    job: "bash /opt/matcha/tools/cli.sh relance-opco >> /var/log/cron.log 2>&1"
