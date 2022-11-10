@@ -16,7 +16,7 @@ services:
     environment:
       - LBA_AWS_ACCESS_KEY_ID={{ vault.LBA_AWS_ACCESS_KEY_ID }}
       - LBA_AWS_SECRET_ACCESS_KEY={{ vault.LBA_AWS_SECRET_ACCESS_KEY }}
-      - LBA_MONGODB_URI=mongodb://mongodb:{{ vault.LBA_MONGODB_USER_PASSWORD }}@mongodb:27017/labonnealternance?authSource=admin&retryWrites=true&w=majority
+      - LBA_MONGODB_URI=mongodb://doctrina:{{ vault.LBA_MONGODB_USER_PASSWORD }}@mongodb:27017/labonnealternance?authSource=admin&retryWrites=true&w=majority
       - LBA_SECRET_UPDATE_ROMES_METIERS={{ vault.LBA_SECRET_UPDATE_ROMES_METIERS }}
       - LBA_LABONNEFORMATION_PASSWORD={{ vault.LBA_LABONNEFORMATION_PASSWORD }}
       - LBA_SLACK_WEBHOOK_URL={{ vault.LBA_SLACK_WEBHOOK_URL }}
