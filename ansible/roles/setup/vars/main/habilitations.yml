@@ -4,6 +4,11 @@ habilitations:
     gpg_key: 7F5A88DA2A9EEEF2
     authorized_keys:
       - "https://github.com/kevbarns.keys"
+  - username: antoine
+    name: Antoine Bigard
+    gpg_key: AF6496CB
+    authorized_keys:
+      - "https://github.com/antoinebigard.keys"
   - username: bdavidxyz
     name: David Boureau
     authorized_keys:
