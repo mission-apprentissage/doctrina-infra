@@ -50,7 +50,7 @@
 
 - name: Ensure clamav container can write in its directory
   file:
-    path: /opt/labonnealternance/data/clamav
+    path: /opt/doctrina/data/clamav
     owner: 100
     group: 101
     state: directory
