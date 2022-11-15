@@ -66,6 +66,8 @@ services:
       - /opt/doctrina/data/mongodb/configdb:/data/configdb
       - /opt/doctrina/data/mongodb/backups:/data/backups
       - /opt/doctrina/.overrides/mongodb/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d:ro
+    ports:
+      - "127.0.0.1:27017:27017"
 
   elasticsearch:
     volumes:
