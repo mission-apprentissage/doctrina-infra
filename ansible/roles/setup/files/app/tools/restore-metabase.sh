@@ -15,12 +15,12 @@ restart_container() {
   NO_UPDATE=true bash /opt/doctrina/start-app.sh "${CURRENT_BRANCH}" --no-deps metabase
 }
 
-function restore_metabase(){
+restore_metabase(){
   echo "Restauration de la base metabase..."
 
   stop_container
-  tar -xvf "${BACKUP_FILE}" -C /opt/labonnealternance/data/metabase
+  tar -xvf "${BACKUP_FILE}" -C /opt/doctrina/data/metabase
   restart_container
 }
 
-                                                                                                                                                     1,1           Top
+restore_metabase
