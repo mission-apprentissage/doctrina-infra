@@ -89,3 +89,25 @@
     minute: "0"
     hour: "4"
     job: "bash /opt/doctrina/tools/cli.sh sync-etablissements-and-formations >> /var/log/cron.log 2>&1"
+
+- name: Mise à jour depuis le Catalogue des formations tous les dimanches à 6:00
+  ansible.builtin.cron:
+    name: "import-trainings-from-catalogue"
+    minute: "0"
+    hour: "6"
+    weekday: "0"
+    job: "bash /opt/doctrina/tools/cli.sh node /app/src/jobs/importFormationsCatalogue/index.js >> /var/log/cron.log 2>&1"
+
+- name: Mise à jour des adresses emails bloquées tous les jours à 1:00
+  ansible.builtin.cron:
+    name: "update-sendinblue-blocked-email-addresses"
+    minute: "0"
+    hour: "1"
+    job: "bash /opt/doctrina/tools/cli.sh node /app/src/jobs/updateSendinblueBlockedEmails/index.js >> /var/log/cron.log 2>&1"
+
+- name: Anonymise les candidatures de plus de un an tous les jours à 1:10
+  ansible.builtin.cron:
+    name: "anonymize-1-year-old-applications"
+    minute: "10"
+    hour: "1"
+    job: "bash /opt/doctrina/tools/cli.sh node /app/src/jobs/anonymizeOldApplications/index.js >> /var/log/cron.log 2>&1"
