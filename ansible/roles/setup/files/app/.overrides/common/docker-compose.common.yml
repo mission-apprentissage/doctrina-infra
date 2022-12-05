@@ -6,7 +6,6 @@ services:
     volumes:
       - /opt/doctrina/data/nginx:/data
       - /opt/doctrina/data/ssl:/ssl:ro
-      - /opt/doctrina/.overrides/reverse_proxy/includes:/etc/nginx/includes/
     environment:
       - SERVER_NAME={{dns_name}}
       - NGINX_ALWAYS_TLS_REDIRECT=true
