@@ -4,8 +4,8 @@ services:
     ports:
       - 443:443
     volumes:
-      - /opt/doctrina/data/nginx:/data
-      - /opt/doctrina/data/ssl:/ssl:ro
+      - /opt/lba/data/nginx:/data
+      - /opt/lba/data/ssl:/ssl:ro
     environment:
       - SERVER_NAME={{dns_name}}
       - NGINX_ALWAYS_TLS_REDIRECT=true
@@ -16,7 +16,7 @@ services:
     environment:
       - LBA_AWS_ACCESS_KEY_ID={{ vault.LBA_AWS_ACCESS_KEY_ID }}
       - LBA_AWS_SECRET_ACCESS_KEY={{ vault.LBA_AWS_SECRET_ACCESS_KEY }}
-      - LBA_MONGODB_URI=mongodb://doctrina:{{ vault.LBA_MONGODB_USER_PASSWORD }}@mongodb:27017/labonnealternance?authSource=admin&retryWrites=true&w=majority
+      - LBA_MONGODB_URI=mongodb://lba:{{ vault.LBA_MONGODB_USER_PASSWORD }}@mongodb:27017/labonnealternance?authSource=admin&retryWrites=true&w=majority
       - LBA_SECRET_UPDATE_ROMES_METIERS={{ vault.LBA_SECRET_UPDATE_ROMES_METIERS }}
       - LBA_LABONNEFORMATION_PASSWORD={{ vault.LBA_LABONNEFORMATION_PASSWORD }}
       - LBA_SLACK_WEBHOOK_URL={{ vault.LBA_SLACK_WEBHOOK_URL }}
@@ -49,7 +49,7 @@ services:
       - LBA_POLE_EMPOI_CLIENT_SECRET={{ vault.LBA_POLE_EMPOI_CLIENT_SECRET }}
 
     volumes:
-      - /opt/doctrina/data/server:/data
+      - /opt/lba/data/server:/data
 
   ui:
     environment:
@@ -61,23 +61,23 @@ services:
 
   mongodb:
     volumes:
-      - /opt/doctrina/data/mongodb/db:/data/db
-      - /opt/doctrina/data/mongodb/configdb:/data/configdb
-      - /opt/doctrina/data/mongodb/backups:/data/backups
-      - /opt/doctrina/.overrides/mongodb/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d:ro
+      - /opt/lba/data/mongodb/db:/data/db
+      - /opt/lba/data/mongodb/configdb:/data/configdb
+      - /opt/lba/data/mongodb/backups:/data/backups
+      - /opt/lba/.overrides/mongodb/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d:ro
     ports:
       - "127.0.0.1:27017:27017"
 
   elasticsearch:
     volumes:
-      - /opt/doctrina/data/elasticsearch:/usr/share/elasticsearch/data
+      - /opt/lba/data/elasticsearch:/usr/share/elasticsearch/data
 
   metabase:
     image: metabase/metabase:v0.44.6
-    container_name: doctrina_metabase
+    container_name: lba_metabase
     mem_limit: 3g
     volumes:
-      - /opt/doctrina/data/metabase:/data/metabase
+      - /opt/lba/data/metabase:/data/metabase
     depends_on:
       - mongodb
     environment:
@@ -85,4 +85,4 @@ services:
       MB_SITE_LOCALE: fr
     restart: always
     networks:
-      - doctrina_network
+      - lba_network

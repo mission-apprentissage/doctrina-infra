@@ -2,7 +2,7 @@
 set -euo pipefail
 #Needs to be run as sudo
 
-readonly REPO_DIR="/opt/doctrina/repository"
+readonly REPO_DIR="/opt/lba/repository"
 readonly BRANCH=${1:?"Merci de préciser le nom de la branche (ex. master)"}; shift;
 
 function update_repository() {
@@ -21,9 +21,9 @@ function reload_containers() {
     cd "${REPO_DIR}"
     /usr/local/bin/docker-compose \
       -f "${REPO_DIR}/docker-compose.yml" \
-      -f "/opt/doctrina/.overrides/docker-compose.common.yml" \
-      -f "/opt/doctrina/.overrides/docker-compose.env.yml" \
-      --project-name doctrina \
+      -f "/opt/lba/.overrides/docker-compose.common.yml" \
+      -f "/opt/lba/.overrides/docker-compose.env.yml" \
+      --project-name lba \
       up -d --force-recreate --build --remove-orphans --renew-anon-volumes $*
     cd -
 }

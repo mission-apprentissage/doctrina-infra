@@ -1,11 +1,11 @@
-- name: Add metabase db backup. Creates an entry "30 0 * * bash /opt/doctrina/tools/backup-metabase.sh >> /var/log/backup-metabase.log"
+- name: Add metabase db backup. Creates an entry "30 0 * * bash /opt/lba/tools/backup-metabase.sh >> /var/log/backup-metabase.log"
   when: env_type == "production"
   become: true
   cron:
     name: "backup metabase"
     minute: "20"
     hour: "0"
-    job: "bash /opt/doctrina/tools/clean-backup.sh && bash /opt/doctrina/tools/backup-metabase.sh >> /var/log/backup-metabase.log"
+    job: "bash /opt/lba/tools/clean-backup.sh && bash /opt/lba/tools/backup-metabase.sh >> /var/log/backup-metabase.log"
 
 - name: Add cron to create offre collection for metabase
   when: env_type == "production"
@@ -13,7 +13,7 @@
     name: "offre-metabase"
     minute: "30"
     hour: "5"
-    job: "bash /opt/doctrina/tools/cli.sh creer-offre-metabase >> /var/log/cron.log 2>&1"
+    job: "bash /opt/lba/tools/cli.sh creer-offre-metabase >> /var/log/cron.log 2>&1"
 
 - name: Add cron to cancel forms
   when: env_type == "production"
@@ -21,7 +21,7 @@
     name: "annulation-formulaire"
     minute: "0"
     hour: "6"
-    job: "bash /opt/doctrina/tools/cli.sh annulation-formulaire >> /var/log/cron.log 2>&1"
+    job: "bash /opt/lba/tools/cli.sh annulation-formulaire >> /var/log/cron.log 2>&1"
 
 - name: Add cron to send forms email reminder
   when: env_type == "production"
@@ -29,7 +29,7 @@
     name: "relance-formulaire j7"
     minute: "30"
     hour: "6"
-    job: "bash /opt/doctrina/tools/cli.sh relance-formulaire 7 >> /var/log/cron.log 2>&1"
+    job: "bash /opt/lba/tools/cli.sh relance-formulaire 7 >> /var/log/cron.log 2>&1"
 
 - name: Add cron to send forms email reminder
   when: env_type == "production"
@@ -37,7 +37,7 @@
     name: "relance-formulaire j1"
     minute: "0"
     hour: "7"
-    job: "bash /opt/doctrina/tools/cli.sh relance-formulaire 1 >> /var/log/cron.log 2>&1"
+    job: "bash /opt/lba/tools/cli.sh relance-formulaire 1 >> /var/log/cron.log 2>&1"
 
 - name: Send reminder to OPCO about awaiting validation users
   when: env_type == "production"
@@ -46,49 +46,49 @@
     weekday: "1-3-5"
     minute: "30"
     hour: "7"
-    job: "bash /opt/doctrina/tools/cli.sh relance-opco >> /var/log/cron.log 2>&1"
+    job: "bash /opt/lba/tools/cli.sh relance-opco >> /var/log/cron.log 2>&1"
 
 - name: Active tous les établissements qui ont souscrits à l'opt-out.
   ansible.builtin.cron:
     name: "activate-opt-out-etablissement-formations"
     minute: "0"
     hour: "14"
-    job: "bash /opt/doctrina/tools/cli.sh activate-opt-out-etablissement-formations >> /var/log/cron.log 2>&1"
+    job: "bash /opt/lba/tools/cli.sh activate-opt-out-etablissement-formations >> /var/log/cron.log 2>&1"
 
 - name: Invite les établissements (via email décisionnaire) à l'opt-out.
   ansible.builtin.cron:
     name: "invite-etablissement-to-opt-out"
     minute: "0"
     hour: "10"
-    job: "bash /opt/doctrina/tools/cli.sh invite-etablissement-to-opt-out >> /var/log/cron.log 2>&1"
+    job: "bash /opt/lba/tools/cli.sh invite-etablissement-to-opt-out >> /var/log/cron.log 2>&1"
 
 - name: Invite les établissements (via email décisionnaire) au premium (Parcoursup)
   ansible.builtin.cron:
     name: "invite-etablissement-to-premium"
     minute: "0"
     hour: "11"
-    job: "bash /opt/doctrina/tools/cli.sh invite-etablissement-to-premium >> /var/log/cron.log 2>&1"
+    job: "bash /opt/lba/tools/cli.sh invite-etablissement-to-premium >> /var/log/cron.log 2>&1"
 
 - name: (Relance) Invite les établissements (via email décisionnaire) au premium (Parcoursup)
   ansible.builtin.cron:
     name: "invite-etablissement-to-premium-follow-up"
     minute: "0"
     hour: "12"
-    job: "bash /opt/doctrina/tools/cli.sh invite-etablissement-to-premium-follow-up >> /var/log/cron.log 2>&1"
+    job: "bash /opt/lba/tools/cli.sh invite-etablissement-to-premium-follow-up >> /var/log/cron.log 2>&1"
 
 - name: Remonte des statistiques sur Parcoursup.
   ansible.builtin.cron:
     name: "parcoursup-etablissement-stat"
     minute: "30"
     hour: "8"
-    job: "bash /opt/doctrina/tools/cli.sh parcoursup-etablissement-stat >> /var/log/cron.log 2>&1"
+    job: "bash /opt/lba/tools/cli.sh parcoursup-etablissement-stat >> /var/log/cron.log 2>&1"
 
 - name: Récupère la liste de toutes les formations du Catalogue et les enregistre en base de données.
   ansible.builtin.cron:
     name: "sync-etablissements-and-formations"
     minute: "0"
     hour: "4"
-    job: "bash /opt/doctrina/tools/cli.sh sync-etablissements-and-formations >> /var/log/cron.log 2>&1"
+    job: "bash /opt/lba/tools/cli.sh sync-etablissements-and-formations >> /var/log/cron.log 2>&1"
 
 - name: Mise à jour depuis le Catalogue des formations tous les dimanches à 6:00
   ansible.builtin.cron:
@@ -96,18 +96,18 @@
     minute: "0"
     hour: "5"
     weekday: "0"
-    job: "bash /opt/doctrina/tools/cli.sh sync-catalogue-trainings >> /var/log/cron.log 2>&1"
+    job: "bash /opt/lba/tools/cli.sh sync-catalogue-trainings >> /var/log/cron.log 2>&1"
 
 - name: Mise à jour des adresses emails bloquées tous les jours à 1:00
   ansible.builtin.cron:
     name: "sync-sib-blocked"
     minute: "0"
     hour: "1"
-    job: "bash /opt/doctrina/tools/cli.sh sync-sib-blocked >> /var/log/cron.log 2>&1"
+    job: "bash /opt/lba/tools/cli.sh sync-sib-blocked >> /var/log/cron.log 2>&1"
 
 - name: Anonymise les candidatures de plus de un an tous les jours à 1:10
   ansible.builtin.cron:
     name: "anonymize-applications"
     minute: "10"
     hour: "1"
-    job: "bash /opt/doctrina/tools/cli.sh anonymize-applications >> /var/log/cron.log 2>&1"
+    job: "bash /opt/lba/tools/cli.sh anonymize-applications >> /var/log/cron.log 2>&1"

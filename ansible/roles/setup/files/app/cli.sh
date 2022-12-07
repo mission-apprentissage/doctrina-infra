@@ -5,4 +5,4 @@ set -euo pipefail
 echo "****************************"
 echo "[$(date +'%Y-%m-%d_%H%M%S')] Running ${BASH_SOURCE[0]} $*"
 echo "****************************"
-docker exec doctrina_server yarn --silent cli "$@"
+docker exec lba_server yarn --silent cli "$@"

@@ -3,7 +3,7 @@ set -euo pipefail
 
 readonly TEXT_MESSAGE=${1:?"Please provide a text message"}
 readonly SLACK_URL="{{ vault.LBA_SLACK_WEBHOOK_URL }}"
-readonly CHANNEL_NAME="#doctrina-alerting"
+readonly CHANNEL_NAME="#labonnealternance-alerting"
 readonly MNA_ENV=$(cat /env)
 
 curl -s -o /dev/null -X POST --data-urlencode \

@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-readonly PROJECT_DIR="/opt/doctrina"
-readonly REPO_DIR="/opt/doctrina/repository"
+readonly PROJECT_DIR="/opt/lba"
+readonly REPO_DIR="/opt/lba/repository"
 
 function reload_containers() {
   cd "${REPO_DIR}"

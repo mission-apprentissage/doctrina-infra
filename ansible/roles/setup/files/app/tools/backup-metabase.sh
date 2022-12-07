@@ -6,14 +6,14 @@ readonly BACKUP_NAS_DIR="/mnt/backups/metabase"
 readonly BACKUP_LOCAL_DIR="/opt/labonnealternance/backups/metabase"
 
 stop_container() {
-  bash /opt/doctrina/stop-app.sh metabase
+  bash /opt/lba/stop-app.sh metabase
 }
 
 restart_container() {
   local CURRENT_BRANCH
-  CURRENT_BRANCH="$(git --git-dir=/opt/doctrina/repository/.git rev-parse --abbrev-ref HEAD)"
+  CURRENT_BRANCH="$(git --git-dir=/opt/lba/repository/.git rev-parse --abbrev-ref HEAD)"
 
-  NO_UPDATE=true bash /opt/doctrina/start-app.sh "${CURRENT_BRANCH}" --no-deps metabase
+  NO_UPDATE=true bash /opt/lba/start-app.sh "${CURRENT_BRANCH}" --no-deps metabase
 }
 
 function backup_metabase(){

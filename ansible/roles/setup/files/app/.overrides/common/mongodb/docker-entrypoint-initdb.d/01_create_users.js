@@ -1,7 +1,7 @@
 /* eslint-disable */
 
 db.getSiblingDB("admin").createUser({
-  user: "doctrina",
+  user: "lba",
   pwd: "{{ vault.LBA_MONGODB_USER_PASSWORD }}",
   roles: [{ role: "readWrite", db: "cerfa" }],
 });

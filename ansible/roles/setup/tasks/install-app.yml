@@ -1,17 +1,17 @@
 - name: Stoppe tous les conteneurs applicatifs
-  shell: "bash /opt/doctrina/stop-app.sh"
+  shell: "bash /opt/lba/stop-app.sh"
 
 - name: "Clone du repository (branche : {{ git_revision }})"
   git:
-    repo: "https://github.com/mission-apprentissage/doctrina.git"
+    repo: "https://github.com/mission-apprentissage/lba.git"
     version: "{{ git_revision }}"
     force: yes
     accept_hostkey: yes
-    dest: /opt/doctrina/repository
+    dest: /opt/lba/repository
 
 - name: Création des répertoires 'overrides'
   file:
-    path: "/opt/doctrina/.overrides/{{ item.path }}/"
+    path: "/opt/lba/.overrides/{{ item.path }}/"
     state: directory
   with_filetree:
     - app/.overrides/common/
@@ -21,7 +21,7 @@
 - name: Copie des fichiers 'overrides'
   ansible.builtin.template:
     src: "{{ item.src }}"
-    dest: "/opt/doctrina/.overrides/{{ item.path }}"
+    dest: "/opt/lba/.overrides/{{ item.path }}"
   with_filetree:
     - app/.overrides/common/
     - app/.overrides/{{ env_type }}/
@@ -35,22 +35,22 @@
     group: root
     mode: 770
   with_items:
-    - "/opt/doctrina/tools"
-    - "/opt/doctrina/repository"
-    - "/opt/doctrina/data"
-    - "/opt/doctrina/backups"
-    - "/opt/doctrina/.overrides"
+    - "/opt/lba/tools"
+    - "/opt/lba/repository"
+    - "/opt/lba/data"
+    - "/opt/lba/backups"
+    - "/opt/lba/.overrides"
 
 - name: Ensure elasticsearch container can write in its directory
   file:
-    path: /opt/doctrina/data/elasticsearch
+    path: /opt/lba/data/elasticsearch
     owner: 1000
     group: 1000
     state: directory
 
 - name: Ensure clamav container can write in its directory
   file:
-    path: /opt/doctrina/data/clamav
+    path: /opt/lba/data/clamav
     owner: 100
     group: 101
     state: directory
@@ -60,7 +60,7 @@
     name: "rotate_nginx_log_files"
     minute: "0"
     hour: "1"
-    job: "bash /opt/doctrina/tools/rotate-nginx-log-files.sh >> /var/log/cron.log 2>&1"
+    job: "bash /opt/lba/tools/rotate-nginx-log-files.sh >> /var/log/cron.log 2>&1"
 
 - name: Add cron to reload app automatically
   when: env_type == "recette"
@@ -69,4 +69,4 @@
     minute: "*/1"
     hour: 8-20
     weekday: 1-5
-    job: "bash /opt/doctrina/reload-app.sh >> /var/log/cron.log 2>&1"
+    job: "bash /opt/lba/reload-app.sh >> /var/log/cron.log 2>&1"
