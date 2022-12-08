@@ -3,7 +3,7 @@
 
 - name: "Clone du repository (branche : {{ git_revision }})"
   git:
-    repo: "https://github.com/mission-apprentissage/lba.git"
+    repo: "https://github.com/mission-apprentissage/doctrina.git"
     version: "{{ git_revision }}"
     force: yes
     accept_hostkey: yes
