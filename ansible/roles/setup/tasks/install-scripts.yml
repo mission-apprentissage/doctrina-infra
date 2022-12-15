@@ -1,6 +1,6 @@
 - name: Création des répertoires tools
   file:
-    path: "/opt/doctrina/tools/{{ item.path }}/"
+    path: "/opt/lba/tools/{{ item.path }}/"
     state: directory
   with_filetree:
     - app/tools
@@ -9,7 +9,7 @@
 - name: Copie des fichiers 'overrides'
   ansible.builtin.template:
     src: "{{ item.src }}"
-    dest: "/opt/doctrina/tools/{{ item.path }}"
+    dest: "/opt/lba/tools/{{ item.path }}"
     mode: "g+x"
   with_filetree:
     - app/tools
@@ -18,7 +18,7 @@
 - name: Copie des scripts bash
   ansible.builtin.template:
     src: "{{ item }}"
-    dest: /opt/doctrina/{{ item | basename }}
+    dest: /opt/lba/{{ item | basename }}
     mode: "g+x"
   with_fileglob:
     - "app/*.sh"
@@ -29,7 +29,7 @@
     state: absent
     regexp: "mna"
 
-- shell: ls /opt/doctrina/*.sh
+- shell: ls /opt/lba/*.sh
   register: nopasswd_script_files
 
 - name: Ajout des scripts en NOPASSWD pour le groupe 'mna'

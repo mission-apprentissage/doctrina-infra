@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 #Needs to be run as sudo
-readonly CONTAINER_FILTER=${1:-"doctrina*"};
+readonly CONTAINER_FILTER=${1:-"lba*"};
 
 echo "****************************"
 echo "[$(date +'%Y-%m-%d_%H%M%S')] Running ${BASH_SOURCE[0]} $*"

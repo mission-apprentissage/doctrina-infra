@@ -25,13 +25,11 @@
         name: "backup"
         minute: "0"
         hour: "4"
-        job: "bash /opt/doctrina/tools/backup-mongodb.sh>> /var/log/cron.log 2>&1"
+        job: "bash /opt/lba/tools/backup-mongodb.sh>> /var/log/cron.log 2>&1"
   when: backup_partition_name is defined
-
 
 - name: Ensure mounted directory has the same permission
   ansible.builtin.file:
     path: /mnt/backups
     state: directory
     mode: 700
-

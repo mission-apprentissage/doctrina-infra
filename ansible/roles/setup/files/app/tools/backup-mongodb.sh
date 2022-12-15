@@ -4,13 +4,13 @@ set -euo pipefail
 
 readonly SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 readonly BACKUP_NAS_DIR="/mnt/backups/mongodb"
-readonly BACKUP_LOCAL_DIR="/opt/doctrina/backups/mongodb"
+readonly BACKUP_LOCAL_DIR="/opt/lba/backups/mongodb"
 readonly BACKUP_FILE="${BACKUP_LOCAL_DIR}/mongodb-$(date +'%Y-%m-%d_%H%M%S').gpg"
 
 function backup() {
   echo "Creating backup..."
   mkdir -p "${BACKUP_LOCAL_DIR}"
-  docker exec doctrina_mongodb bash -c "mongodump --gzip --archive -u backup -p {{ vault.LBA_MONGODB_BACKUP_PASSWORD }}" \
+  docker exec lba_mongodb bash -c "mongodump --gzip --archive -u backup -p {{ vault.LBA_MONGODB_BACKUP_PASSWORD }}" \
   | bash "${SCRIPT_DIR}/gpg/encrypt.sh" >"${BACKUP_FILE}"
 }
 
