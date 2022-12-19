@@ -5,8 +5,8 @@ const open = require("open");
 function newOvhClient(consumerKey) {
   let client = require("ovh")({
     endpoint: "ovh-eu",
-    appKey: env.get("APP_KEY").asString(),
-    appSecret: env.get("APP_SECRET").asString(),
+    appKey: env.get("APP_KEY").default("bXfRhxGBMoKtl1Uv").asString(),
+    appSecret: env.get("APP_SECRET").default("wZzmCUchaj4hflVWyqTCZZw6Ez5oTaik").asString(),
     ...(consumerKey ? { consumerKey } : {}),
   });
   client.request = promisify(client.request);
