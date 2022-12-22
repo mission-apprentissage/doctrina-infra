@@ -77,7 +77,7 @@ services:
   metabase:
     image: metabase/metabase:v0.44.6
     container_name: lba_metabase
-    mem_limit: 3g
+    mem_limit: 2g
     volumes:
       - /opt/lba/data/metabase:/data/metabase
     depends_on:
