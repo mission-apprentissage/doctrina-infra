@@ -57,8 +57,8 @@
 - name: Invite les établissements (via email décisionnaire) à l'opt-out.
   ansible.builtin.cron:
     name: "invite-etablissement-to-opt-out"
-    minute: "0"
-    hour: "1"
+    minute: "35"
+    hour: "0"
     job: "bash /opt/lba/tools/cli.sh invite-etablissement-to-opt-out >> /var/log/cron.log 2>&1"
 
 - name: Invite les établissements (via email décisionnaire) au premium (Parcoursup)
@@ -78,8 +78,8 @@
 - name: Remonte des statistiques sur Parcoursup.
   ansible.builtin.cron:
     name: "parcoursup-etablissement-stat"
-    minute: "35"
-    hour: "0"
+    minute: "0"
+    hour: "1"
     job: "bash /opt/lba/tools/cli.sh parcoursup-etablissement-stat >> /var/log/cron.log 2>&1"
 
 - name: Récupère la liste de toutes les formations du Catalogue et les enregistre en base de données.
