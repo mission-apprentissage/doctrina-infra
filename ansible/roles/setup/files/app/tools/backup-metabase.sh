@@ -35,7 +35,7 @@ function replicate_backups() {
 function remove_old_backups() {
   echo "Removing local backups older than 7 days..."
   find "${BACKUP_LOCAL_DIR}" -mindepth 1 -maxdepth 1 -prune -ctime +7 -exec rm -r "{}" \;
-  find "${BACKUP_NAS_DIR}" -mindepth 1 -maxdepth 1 -prune -ctime +30 -exec rm -r "{}" \;
+  find "${BACKUP_NAS_DIR}" -mindepth 1 -maxdepth 1 -prune -ctime +7 -exec rm -r "{}" \;
 }
 
 
