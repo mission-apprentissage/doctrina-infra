@@ -6,7 +6,7 @@
     hour: "0"
     job: "bash /opt/lba/tools/clean-backup.sh && bash /opt/lba/tools/backup-metabase.sh >> /var/log/backup-metabase.log"
 
-- name: Create offre collection for metabase
+- name: Create offre collection for metabase.
   when: env_type == "production"
   ansible.builtin.cron:
     name: "offre-metabase"
@@ -14,7 +14,7 @@
     hour: "0"
     job: "bash /opt/lba/tools/cli.sh creer-offre-metabase >> /var/log/cron.log 2>&1"
 
-- name: Cancel lba recruteur offers if expired
+- name: Cancel lba recruteur expired offers.
   when: env_type == "production"
   ansible.builtin.cron:
     name: "annulation-formulaire"
@@ -22,7 +22,7 @@
     hour: "0"
     job: "bash /opt/lba/tools/cli.sh annulation-formulaire >> /var/log/cron.log 2>&1"
 
-- name: Send offer reminder email at J+7
+- name: Send offer reminder email at J+7.
   when: env_type == "production"
   ansible.builtin.cron:
     name: "relance-formulaire j7"
@@ -30,7 +30,7 @@
     hour: "0"
     job: "bash /opt/lba/tools/cli.sh relance-formulaire 7 >> /var/log/cron.log 2>&1"
 
-- name: Send offer reminder email at J+1
+- name: Send offer reminder email at J+1.
   when: env_type == "production"
   ansible.builtin.cron:
     name: "relance-formulaire j1"
@@ -38,7 +38,7 @@
     hour: "0"
     job: "bash /opt/lba/tools/cli.sh relance-formulaire 1 >> /var/log/cron.log 2>&1"
 
-- name: Send reminder to OPCO about awaiting validation users
+- name: Send reminder to OPCO about awaiting validation users.
   when: env_type == "production"
   ansible.builtin.cron:
     name: "relance-opco"
@@ -61,14 +61,14 @@
     hour: "0"
     job: "bash /opt/lba/tools/cli.sh invite-etablissement-to-opt-out >> /var/log/cron.log 2>&1"
 
-- name: Invite les établissements (via email décisionnaire) au premium (Parcoursup)
+- name: Invite les établissements (via email décisionnaire) au premium (Parcoursup).
   ansible.builtin.cron:
     name: "invite-etablissement-to-premium"
     minute: "40"
     hour: "0"
     job: "bash /opt/lba/tools/cli.sh invite-etablissement-to-premium >> /var/log/cron.log 2>&1"
 
-- name: (Relance) Invite les établissements (via email décisionnaire) au premium (Parcoursup)
+- name: (Relance) Invite les établissements (via email décisionnaire) au premium (Parcoursup).
   ansible.builtin.cron:
     name: "invite-etablissement-to-premium-follow-up"
     minute: "45"
@@ -89,7 +89,7 @@
     hour: "2"
     job: "bash /opt/lba/tools/cli.sh sync-etablissements-and-formations >> /var/log/cron.log 2>&1"
 
-- name: Mise à jour depuis le Catalogue des formations tous les dimanches à 6:00
+- name: Mise à jour depuis le Catalogue des formations.
   ansible.builtin.cron:
     name: "sync-catalogue-trainings"
     minute: "30"
@@ -97,14 +97,14 @@
     weekday: "0"
     job: "bash /opt/lba/tools/cli.sh sync-catalogue-trainings >> /var/log/cron.log 2>&1"
 
-- name: Mise à jour des adresses emails bloquées tous les jours à 1:00
+- name: Mise à jour des adresses emails bloquées.
   ansible.builtin.cron:
     name: "sync-sib-blocked"
     minute: "05"
     hour: "0"
     job: "bash /opt/lba/tools/cli.sh sync-sib-blocked >> /var/log/cron.log 2>&1"
 
-- name: Anonymise les candidatures de plus de un an tous les jours à 1:10
+- name: Anonymise les candidatures de plus de un an.
   ansible.builtin.cron:
     name: "anonymize-applications"
     minute: "10"
