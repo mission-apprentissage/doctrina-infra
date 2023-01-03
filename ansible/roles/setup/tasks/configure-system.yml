@@ -23,6 +23,11 @@
   community.general.timezone:
     name: Europe/Paris
 
+- name: Restart crond to match timezone setting
+  ansible.builtin.systemd:
+    name: cron
+    state: restarted
+
 - name: Definition clavier francais
   lineinfile:
     path: /etc/default/keyboard
