@@ -19,6 +19,7 @@
   - [Ajouter un disque de sauvegarde externe](#ajouter-un-disque-de-sauvegarde-externe)
   - [Notifications Slack](#notifications-slack)
 - [Tester les playbook Ansible](#tester-les-playbook-ansible)
+- [Sauvegarde de la base de données](#sauvegarde-de-la-base-de-données)
 
 ## Prérequis
 
@@ -31,7 +32,7 @@ Pour utiliser le projet infra, vous devez avoir une clé SSH, si ce n'est pas le
 suivant : https://docs.github.com/en/authentication/connecting-to-github-with-ssh
 
 Votre clef publique doit impérativement être disponible à l'adresse https://github.com/<votre_user_github>.keys pour que votre user soit configuré correctement.
-Pour forcer l'utilisation de la bonne clef privée lors de vos connexions SSH vous pouvez utiliser la commande -i en pointant vers le fichier contenant la clef. 
+Pour forcer l'utilisation de la bonne clef privée lors de vos connexions SSH vous pouvez utiliser la commande -i en pointant vers le fichier contenant la clef.
 
 ```bash
  ssh -i /home/nom_user/.ssh/id_rsa <votre_user_lba>@labonnealternance.apprentissage.beta.gouv.fr
@@ -340,4 +341,21 @@ de se connecter à la machine via la commande :
 
 ```sh
 bash ansible/test/connect-to-vm.sh
+```
+
+## Sauvegarde de la base de données
+
+Par défaut, la base de données est sauvegardé sur 7 jours glissants. Si la partition de sauvegarde externe est disponible, 30 jours de sauvegarde seront conservées sur le disque externe.
+
+Les sauvegardes sont effectuées à l'aide des fichiers disponibles dans le dossier `tools` :
+
+- backup-mongodb.sh
+- restore-mongodb.sh
+
+Les sauvegardes sont encryptées à l'aide des clés GPG des utilisateurs déclarés dans le fichier `habilitations.yml` ainsi que la clé GPG du serveur créé lors de son l'initialisation.
+
+Une sauvegarde de la base de données peut donc être décrypter par les personnes habilités de la manière suivante :
+
+```sh
+gpg --output filename --decrypt filename.gpg
 ```
